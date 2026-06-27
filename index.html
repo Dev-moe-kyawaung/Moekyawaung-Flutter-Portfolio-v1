@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Moe Kyaw Aung | Senior Android Developer</title>
+<meta name="description" content="Senior Android Developer with 12 years experience. Kotlin, Jetpack Compose, Flutter, Firebase, Clean Architecture."/>
+<meta name="theme-color" content="#0553B1"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Moe Portfolio"/>
+
+<!-- PWA Manifest inline via JS -->
+<link rel="manifest" href="manifest.json"/>
+
+<!-- Open Graph -->
+<meta property="og:title" content="Moe Kyaw Aung | Senior Android Developer"/>
+<meta property="og:description" content="12 years crafting Android & Flutter apps. Based in Tachileik, Myanmar."/>
+<meta property="og:type" content="website"/>
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+
+<style>
+:root {
+  --flutter-blue: #0553B1;
+  --flutter-sky: #027DFD;
+  --flutter-teal: #54C5F8;
+  --flutter-dark: #042240;
+  --flutter-navy: #011627;
+  --flutter-light: #E8F4FD;
+  --flutter-white: #FFFFFF;
+  --flutter-orange: #FF6B00;
+  --flutter-green: #00D4AA;
+  --bg: #011627;
+  --surface: #042240;
+  --surface2: #0A3055;
+  --text: #E8F4FD;
+  --text-dim: #7BAFD4;
+  --accent: #54C5F8;
+  --accent2: #027DFD;
+  --highlight: #FF6B00;
+  --code-green: #00D4AA;
+  --border: rgba(84,197,248,0.15);
+  --shadow: 0 8px 32px rgba(2,125,253,0.2);
+  --glow: 0 0 40px rgba(84,197,248,0.3);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+
+body{
+  font-family:'Space Grotesk',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* Custom Cursor */
+#cursor{
+  position:fixed;width:12px;height:12px;
+  background:var(--flutter-teal);
+  border-radius:50%;pointer-events:none;
+  z-index:9999;transform:translate(-50%,-50%);
+  transition:transform 0.1s,width 0.2s,height 0.2s,background 0.2s;
+  mix-blend-mode:screen;
+}
+#cursor-ring{
+  position:fixed;width:40px;height:40px;
+  border:1.5px solid var(--flutter-teal);
+  border-radius:50%;pointer-events:none;
+  z-index:9998;transform:translate(-50%,-50%);
+  transition:transform 0.15s ease,width 0.3s,height 0.3s,opacity 0.3s;
+  opacity:0.6;
+}
+body:hover #cursor{opacity:1;}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--flutter-sky);border-radius:2px;}
+
+/* ======= PRELOADER ======= */
+#preloader{
+  position:fixed;inset:0;z-index:10000;
+  background:var(--bg);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:24px;
+  transition:opacity 0.6s,visibility 0.6s;
+}
+#preloader.hidden{opacity:0;visibility:hidden;}
+.flutter-logo-anim{
+  width:80px;height:80px;position:relative;
+}
+.flutter-logo-anim svg{animation:flutterSpin 2s ease-in-out infinite;}
+@keyframes flutterSpin{
+  0%{transform:rotateY(0deg);}
+  50%{transform:rotateY(180deg);}
+  100%{transform:rotateY(360deg);}
+}
+.preload-text{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.85rem;color:var(--text-dim);letter-spacing:0.2em;
+}
+.preload-bar{
+  width:200px;height:2px;background:var(--surface2);border-radius:1px;overflow:hidden;
+}
+.preload-fill{
+  height:100%;background:linear-gradient(90deg,var(--flutter-sky),var(--flutter-teal));
+  border-radius:1px;animation:preloadFill 1.8s ease forwards;
+}
+@keyframes preloadFill{from{width:0%;}to{width:100%;}}
+
+/* ======= NAVBAR ======= */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:0 5%;
+  background:rgba(1,22,39,0.85);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  height:64px;
+  transition:transform 0.3s;
+}
+.nav-logo{
+  display:flex;align-items:center;gap:10px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:1rem;font-weight:700;
+  color:var(--flutter-teal);letter-spacing:0.05em;
+  text-decoration:none;
+}
+.nav-logo .flutter-icon{
+  width:28px;height:28px;
+}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{
+  font-size:0.85rem;font-weight:600;letter-spacing:0.08em;
+  color:var(--text-dim);text-decoration:none;text-transform:uppercase;
+  transition:color 0.2s;position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;
+  background:var(--flutter-teal);transition:width 0.3s;
+}
+.nav-links a:hover{color:var(--flutter-teal);}
+.nav-links a:hover::after{width:100%;}
+
+.nav-cta{
+  background:var(--flutter-sky);color:#fff;
+  padding:8px 20px;border-radius:6px;
+  font-size:0.8rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+  text-decoration:none;transition:background 0.2s,transform 0.2s;
+  border:none;cursor:pointer;
+}
+.nav-cta:hover{background:var(--flutter-teal);transform:translateY(-1px);}
+
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{width:22px;height:2px;background:var(--flutter-teal);border-radius:1px;transition:all 0.3s;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+
+.mobile-menu{
+  display:none;position:fixed;top:64px;left:0;right:0;
+  background:rgba(4,34,64,0.98);backdrop-filter:blur(20px);
+  padding:24px 5%;border-bottom:1px solid var(--border);
+  flex-direction:column;gap:20px;z-index:999;
+}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{
+  font-size:1rem;font-weight:600;color:var(--text-dim);
+  text-decoration:none;letter-spacing:0.06em;text-transform:uppercase;
+  padding:8px 0;border-bottom:1px solid var(--border);
+  transition:color 0.2s;
+}
+.mobile-menu a:hover{color:var(--flutter-teal);}
+
+/* ======= PWA INSTALL BANNER ======= */
+#pwa-banner{
+  position:fixed;bottom:80px;left:50%;transform:translateX(-50%);
+  background:var(--surface);border:1px solid var(--flutter-sky);
+  border-radius:12px;padding:16px 20px;
+  display:none;align-items:center;gap:14px;
+  z-index:2000;box-shadow:var(--shadow);
+  max-width:360px;width:90%;
+  animation:slideUp 0.4s ease;
+}
+#pwa-banner.show{display:flex;}
+@keyframes slideUp{from{transform:translateX(-50%) translateY(20px);opacity:0;}to{transform:translateX(-50%) translateY(0);opacity:1;}}
+.pwa-icon{font-size:1.8rem;}
+.pwa-text p{font-size:0.8rem;font-weight:600;color:var(--text);}
+.pwa-text span{font-size:0.7rem;color:var(--text-dim);}
+.pwa-btn{
+  background:var(--flutter-sky);color:#fff;
+  border:none;padding:8px 16px;border-radius:6px;
+  font-size:0.8rem;font-weight:700;cursor:pointer;white-space:nowrap;
+  transition:background 0.2s;
+}
+.pwa-btn:hover{background:var(--flutter-teal);}
+.pwa-dismiss{
+  background:none;border:none;color:var(--text-dim);
+  font-size:1.2rem;cursor:pointer;padding:4px;line-height:1;
+}
+
+/* ======= HERO ======= */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  position:relative;overflow:hidden;padding:80px 5% 40px;
+}
+#particles-canvas{
+  position:absolute;inset:0;z-index:0;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(84,197,248,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(84,197,248,0.04) 1px,transparent 1px);
+  background-size:60px 60px;
+  z-index:1;
+}
+.hero-content{
+  position:relative;z-index:2;
+  max-width:1200px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+}
+.hero-left{}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(84,197,248,0.1);border:1px solid var(--flutter-teal);
+  border-radius:100px;padding:6px 16px;margin-bottom:24px;
+  font-family:'JetBrains Mono',monospace;font-size:0.75rem;
+  color:var(--flutter-teal);letter-spacing:0.1em;
+}
+.hero-badge .dot{
+  width:6px;height:6px;background:var(--flutter-teal);border-radius:50%;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
+
+.hero-name{
+  font-size:clamp(2.2rem,5vw,3.8rem);font-weight:700;line-height:1.1;
+  margin-bottom:12px;
+}
+.hero-name .first{color:var(--text);}
+.hero-name .last{
+  color:transparent;
+  background:linear-gradient(135deg,var(--flutter-sky),var(--flutter-teal));
+  -webkit-background-clip:text;background-clip:text;
+}
+.hero-title{
+  font-family:'JetBrains Mono',monospace;
+  font-size:1rem;color:var(--flutter-orange);
+  margin-bottom:16px;letter-spacing:0.05em;
+}
+.hero-title::before{content:'> ';}
+#typed-text{color:var(--flutter-orange);}
+.cursor-blink{animation:blink 1s infinite;color:var(--flutter-teal);}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+.hero-desc{
+  font-size:1.05rem;line-height:1.7;color:var(--text-dim);
+  margin-bottom:32px;max-width:480px;
+}
+.hero-desc strong{color:var(--flutter-teal);}
+
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+.btn-primary{
+  background:linear-gradient(135deg,var(--flutter-sky),var(--flutter-blue));
+  color:#fff;padding:14px 32px;border-radius:8px;
+  font-weight:700;font-size:0.9rem;letter-spacing:0.05em;text-decoration:none;
+  border:none;cursor:pointer;
+  transition:transform 0.2s,box-shadow 0.2s;
+  box-shadow:0 4px 20px rgba(2,125,253,0.4);
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(2,125,253,0.5);}
+.btn-secondary{
+  background:transparent;color:var(--flutter-teal);
+  padding:13px 32px;border-radius:8px;
+  font-weight:700;font-size:0.9rem;letter-spacing:0.05em;text-decoration:none;
+  border:1.5px solid var(--flutter-teal);cursor:pointer;
+  transition:background 0.2s,transform 0.2s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-secondary:hover{background:rgba(84,197,248,0.1);transform:translateY(-2px);}
+
+.hero-right{display:flex;justify-content:center;align-items:center;}
+.hero-phone{
+  position:relative;
+  width:280px;
+  animation:float 4s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-16px);}}
+.phone-frame{
+  width:280px;height:560px;
+  background:var(--surface);
+  border-radius:40px;
+  border:2px solid var(--border);
+  overflow:hidden;
+  box-shadow:var(--glow),0 40px 80px rgba(0,0,0,0.4);
+  position:relative;
+}
+.phone-screen{
+  width:100%;height:100%;
+  background:linear-gradient(160deg,var(--flutter-navy),var(--surface));
+  padding:20px 16px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.7rem;
+  overflow:hidden;
+}
+.code-line{margin-bottom:6px;white-space:nowrap;overflow:hidden;}
+.code-line.fade{opacity:0;animation:fadeIn 0.5s forwards;}
+.c-kw{color:#C792EA;}
+.c-cls{color:#FFCB6B;}
+.c-fn{color:#82AAFF;}
+.c-str{color:#C3E88D;}
+.c-cm{color:#546E7A;font-style:italic;}
+.c-var{color:#F78C6C;}
+.phone-notch{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:100px;height:28px;background:var(--surface);
+  border-radius:0 0 18px 18px;z-index:5;
+}
+
+/* Stats row */
+.hero-stats{
+  display:flex;gap:32px;margin-top:36px;padding-top:28px;
+  border-top:1px solid var(--border);flex-wrap:wrap;
+}
+.stat{text-align:center;}
+.stat-num{
+  font-size:1.8rem;font-weight:700;
+  color:var(--flutter-teal);line-height:1;
+}
+.stat-label{font-size:0.72rem;color:var(--text-dim);margin-top:4px;letter-spacing:0.08em;text-transform:uppercase;}
+
+/* ======= SECTION BASE ======= */
+section{padding:100px 5%;}
+.section-inner{max-width:1200px;margin:0 auto;}
+.section-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.75rem;color:var(--flutter-orange);letter-spacing:0.2em;text-transform:uppercase;
+  margin-bottom:12px;display:flex;align-items:center;gap:8px;
+}
+.section-label::before{content:'//';opacity:0.5;}
+.section-title{
+  font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;
+  margin-bottom:16px;line-height:1.2;
+}
+.section-title span{
+  color:transparent;
+  background:linear-gradient(135deg,var(--flutter-sky),var(--flutter-teal));
+  -webkit-background-clip:text;background-clip:text;
+}
+.section-desc{color:var(--text-dim);font-size:1rem;line-height:1.7;max-width:560px;}
+.divider{
+  width:60px;height:3px;
+  background:linear-gradient(90deg,var(--flutter-sky),var(--flutter-teal));
+  border-radius:2px;margin:20px 0 48px;
+}
+
+/* ======= ABOUT ======= */
+#about{background:var(--surface);}
+.about-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:60px;align-items:start;}
+.about-photo-wrap{
+  position:sticky;top:90px;
+}
+.about-photo{
+  width:100%;aspect-ratio:1;
+  border-radius:20px;overflow:hidden;
+  border:2px solid var(--border);
+  background:var(--surface2);
+  position:relative;
+}
+.about-photo img{width:100%;height:100%;object-fit:cover;}
+.about-photo-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(2,125,253,0.2),rgba(84,197,248,0.1));
+}
+.about-location{
+  display:flex;align-items:center;gap:8px;
+  margin-top:16px;font-size:0.85rem;color:var(--text-dim);
+}
+.about-location svg{color:var(--flutter-orange);}
+
+.about-content h3{
+  font-size:1.4rem;font-weight:700;margin-bottom:12px;color:var(--flutter-teal);
+}
+.about-content p{
+  color:var(--text-dim);line-height:1.8;margin-bottom:20px;font-size:0.95rem;
+}
+.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+.about-tag{
+  background:rgba(84,197,248,0.08);border:1px solid var(--border);
+  color:var(--flutter-teal);padding:6px 14px;border-radius:100px;
+  font-size:0.8rem;font-weight:600;letter-spacing:0.04em;
+  transition:background 0.2s,border-color 0.2s;
+}
+.about-tag:hover{background:rgba(84,197,248,0.15);border-color:var(--flutter-teal);}
+
+.social-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+.social-link{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--surface2);border:1px solid var(--border);
+  color:var(--text-dim);padding:8px 14px;border-radius:8px;
+  font-size:0.8rem;font-weight:600;text-decoration:none;
+  transition:all 0.2s;
+}
+.social-link:hover{border-color:var(--flutter-teal);color:var(--flutter-teal);transform:translateY(-2px);}
+
+/* ======= SKILLS ======= */
+#skills{}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;}
+.skill-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:16px;
+  padding:28px;transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;
+  position:relative;overflow:hidden;
+}
+.skill-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--flutter-sky),var(--flutter-teal));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform 0.4s;
+}
+.skill-card:hover{
+  border-color:rgba(84,197,248,0.4);
+  transform:translateY(-4px);
+  box-shadow:var(--shadow);
+}
+.skill-card:hover::before{transform:scaleX(1);}
+.skill-icon{font-size:2rem;margin-bottom:14px;}
+.skill-name{font-size:1rem;font-weight:700;margin-bottom:8px;color:var(--text);}
+.skill-desc{font-size:0.82rem;color:var(--text-dim);line-height:1.6;margin-bottom:16px;}
+.skill-bar-wrap{background:var(--surface2);border-radius:100px;height:4px;overflow:hidden;}
+.skill-bar{
+  height:100%;border-radius:100px;
+  background:linear-gradient(90deg,var(--flutter-sky),var(--flutter-teal));
+  width:0%;transition:width 1.2s ease;
+}
+.skill-pct{font-size:0.75rem;color:var(--flutter-teal);font-weight:700;margin-top:6px;font-family:'JetBrains Mono',monospace;}
+
+/* ======= EXPERIENCE ======= */
+#experience{background:var(--surface);}
+.timeline{position:relative;padding-left:28px;}
+.timeline::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:2px;background:linear-gradient(180deg,var(--flutter-sky),transparent);
+}
+.timeline-item{
+  position:relative;margin-bottom:48px;
+  opacity:0;transform:translateX(-20px);
+  transition:opacity 0.6s,transform 0.6s;
+}
+.timeline-item.visible{opacity:1;transform:translateX(0);}
+.timeline-dot{
+  position:absolute;left:-35px;top:6px;
+  width:14px;height:14px;
+  border-radius:50%;background:var(--flutter-teal);
+  border:2px solid var(--bg);
+  box-shadow:0 0 12px var(--flutter-teal);
+}
+.timeline-period{
+  font-family:'JetBrains Mono',monospace;font-size:0.75rem;
+  color:var(--flutter-orange);letter-spacing:0.1em;margin-bottom:6px;
+}
+.timeline-role{font-size:1.15rem;font-weight:700;margin-bottom:4px;}
+.timeline-company{font-size:0.9rem;color:var(--flutter-teal);margin-bottom:12px;}
+.timeline-desc{font-size:0.85rem;color:var(--text-dim);line-height:1.7;}
+.timeline-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+.timeline-tag{
+  background:rgba(84,197,248,0.08);color:var(--text-dim);
+  padding:3px 10px;border-radius:4px;font-size:0.72rem;
+  font-family:'JetBrains Mono',monospace;border:1px solid var(--border);
+}
+
+/* ======= PROJECTS ======= */
+#projects{}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;}
+.project-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;overflow:hidden;
+  transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;
+  display:flex;flex-direction:column;
+}
+.project-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 60px rgba(2,125,253,0.25);
+  border-color:rgba(84,197,248,0.4);
+}
+.project-thumb{
+  height:180px;background:var(--surface2);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.project-thumb-inner{
+  font-size:3.5rem;z-index:1;
+  filter:drop-shadow(0 0 20px rgba(84,197,248,0.4));
+}
+.project-thumb-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--flutter-navy),var(--surface2));
+}
+.project-thumb-glow{
+  position:absolute;width:120px;height:120px;
+  background:radial-gradient(circle,rgba(84,197,248,0.2) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+}
+.project-body{padding:24px;flex:1;display:flex;flex-direction:column;}
+.project-name{font-size:1.05rem;font-weight:700;margin-bottom:8px;}
+.project-desc{font-size:0.82rem;color:var(--text-dim);line-height:1.6;flex:1;margin-bottom:16px;}
+.project-links{display:flex;gap:10px;}
+.project-link{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:0.78rem;font-weight:700;text-decoration:none;
+  padding:6px 14px;border-radius:6px;letter-spacing:0.04em;
+  transition:all 0.2s;
+}
+.project-link.primary{
+  background:var(--flutter-sky);color:#fff;
+}
+.project-link.primary:hover{background:var(--flutter-teal);}
+.project-link.ghost{
+  background:transparent;color:var(--text-dim);border:1px solid var(--border);
+}
+.project-link.ghost:hover{border-color:var(--flutter-teal);color:var(--flutter-teal);}
+
+/* ======= CERTIFICATES ======= */
+#certificates{background:var(--surface);}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}
+.cert-card{
+  background:var(--surface2);border:1px solid var(--border);border-radius:12px;
+  padding:20px 16px;text-align:center;
+  transition:border-color 0.2s,transform 0.2s;
+}
+.cert-card:hover{border-color:rgba(84,197,248,0.4);transform:translateY(-3px);}
+.cert-icon{font-size:2rem;margin-bottom:10px;}
+.cert-name{font-size:0.82rem;font-weight:600;color:var(--text);margin-bottom:4px;}
+.cert-org{font-size:0.72rem;color:var(--text-dim);}
+
+/* ======= GITHUB ======= */
+#github{}
+.github-stats{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;
+  margin-bottom:40px;
+}
+.github-stat-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:20px;text-align:center;transition:border-color 0.2s;
+}
+.github-stat-card:hover{border-color:rgba(84,197,248,0.4);}
+.github-stat-num{font-size:2rem;font-weight:700;color:var(--flutter-teal);line-height:1;}
+.github-stat-label{font-size:0.72rem;color:var(--text-dim);margin-top:4px;text-transform:uppercase;letter-spacing:0.08em;}
+
+.github-accounts-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;
+}
+.github-account{
+  display:flex;align-items:center;gap:10px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:10px;padding:14px 16px;text-decoration:none;
+  color:var(--text-dim);font-size:0.82rem;font-weight:600;
+  transition:all 0.2s;
+}
+.github-account:hover{border-color:var(--flutter-teal);color:var(--flutter-teal);transform:translateX(4px);}
+.github-account svg{flex-shrink:0;color:inherit;}
+
+/* ======= CONTACT ======= */
+#contact{background:var(--surface);}
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;}
+.contact-info{}
+.contact-info p{color:var(--text-dim);line-height:1.8;margin-bottom:28px;}
+.contact-items{display:flex;flex-direction:column;gap:16px;}
+.contact-item{
+  display:flex;align-items:center;gap:14px;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:10px;padding:14px 18px;
+  transition:border-color 0.2s;
+}
+.contact-item:hover{border-color:rgba(84,197,248,0.4);}
+.contact-item-icon{
+  width:36px;height:36px;border-radius:8px;
+  background:rgba(84,197,248,0.1);
+  display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;
+}
+.contact-item-label{font-size:0.72rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;}
+.contact-item-val{font-size:0.85rem;font-weight:600;color:var(--text);}
+
+.contact-form{display:flex;flex-direction:column;gap:16px;}
+.form-group label{display:block;font-size:0.8rem;font-weight:600;color:var(--text-dim);margin-bottom:6px;letter-spacing:0.06em;text-transform:uppercase;}
+.form-group input,.form-group textarea{
+  width:100%;background:var(--surface2);border:1px solid var(--border);
+  color:var(--text);padding:12px 16px;border-radius:8px;font-size:0.9rem;
+  font-family:'Space Grotesk',sans-serif;
+  transition:border-color 0.2s,box-shadow 0.2s;resize:none;
+}
+.form-group input:focus,.form-group textarea:focus{
+  outline:none;border-color:var(--flutter-sky);
+  box-shadow:0 0 0 3px rgba(2,125,253,0.15);
+}
+.form-submit{
+  background:linear-gradient(135deg,var(--flutter-sky),var(--flutter-blue));
+  color:#fff;border:none;padding:14px 32px;border-radius:8px;
+  font-weight:700;font-size:0.9rem;cursor:pointer;
+  transition:transform 0.2s,box-shadow 0.2s;
+  box-shadow:0 4px 20px rgba(2,125,253,0.3);
+  font-family:'Space Grotesk',sans-serif;letter-spacing:0.04em;
+}
+.form-submit:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(2,125,253,0.4);}
+
+/* ======= FOOTER ======= */
+footer{
+  border-top:1px solid var(--border);padding:32px 5%;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:gap;
+  background:var(--bg);
+}
+.footer-copy{font-size:0.8rem;color:var(--text-dim);}
+.footer-copy span{color:var(--flutter-teal);}
+.footer-back-top{
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--flutter-teal);width:40px;height:40px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  text-decoration:none;transition:all 0.2s;font-size:1.1rem;
+}
+.footer-back-top:hover{background:var(--flutter-sky);border-color:var(--flutter-sky);color:#fff;}
+
+/* ======= STICKY CTA ======= */
+#sticky-cta{
+  position:fixed;bottom:24px;right:24px;z-index:1000;
+  display:flex;flex-direction:column;gap:10px;align-items:flex-end;
+}
+.sticky-btn{
+  background:var(--flutter-sky);color:#fff;
+  border:none;padding:12px 20px;border-radius:100px;
+  font-size:0.82rem;font-weight:700;cursor:pointer;
+  box-shadow:0 4px 20px rgba(2,125,253,0.4);
+  text-decoration:none;display:inline-flex;align-items:center;gap:8px;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.sticky-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(2,125,253,0.5);}
+.sticky-btn-ghost{
+  background:var(--surface);border:1px solid var(--flutter-teal);
+  color:var(--flutter-teal);
+}
+.sticky-btn-ghost:hover{background:rgba(84,197,248,0.1);}
+
+/* ======= DARK/LIGHT TOGGLE ======= */
+#theme-toggle{
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--flutter-teal);width:36px;height:36px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:all 0.2s;font-size:1rem;
+}
+#theme-toggle:hover{border-color:var(--flutter-teal);}
+
+/* ======= LIGHT MODE ======= */
+body.light{
+  --bg:#F0F7FF;--surface:#FFFFFF;--surface2:#E8F4FD;
+  --text:#011627;--text-dim:#3D6B8E;--border:rgba(5,83,177,0.12);
+  --shadow:0 8px 32px rgba(5,83,177,0.12);--glow:0 0 40px rgba(2,125,253,0.15);
+}
+
+/* ======= SCROLL REVEAL ======= */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s,transform 0.7s;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ======= RESPONSIVE ======= */
+@media(max-width:900px){
+  .hero-content{grid-template-columns:1fr;gap:40px;}
+  .hero-right{order:-1;}
+  .about-grid{grid-template-columns:1fr;}
+  .about-photo-wrap{position:static;}
+  .contact-grid{grid-template-columns:1fr;}
+  .nav-links,.nav-cta{display:none;}
+  .hamburger{display:flex;}
+}
+@media(max-width:600px){
+  .hero-stats{gap:20px;}
+  .stat-num{font-size:1.4rem;}
+  .phone-frame{width:220px;height:440px;}
+  .hero-phone{width:220px;}
+  #sticky-cta{bottom:16px;right:16px;}
+}
+
+/* ======= ANIMATIONS ======= */
+.fade-in{animation:fadeIn 0.8s ease forwards;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- Preloader -->
+<div id="preloader">
+  <div class="flutter-logo-anim">
+    <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+      <path d="M8 56L32 32L56 56L44 68L20 68L8 56Z" fill="#54C5F8"/>
+      <path d="M8 32L32 8L56 32L44 44L20 44L8 32Z" fill="#027DFD"/>
+      <path d="M44 44L56 32L68 44L56 56L44 44Z" fill="#0553B1"/>
+    </svg>
+  </div>
+  <div class="preload-text">INITIALIZING PORTFOLIO...</div>
+  <div class="preload-bar"><div class="preload-fill"></div></div>
+</div>
+
+<!-- PWA Install Banner -->
+<div id="pwa-banner">
+  <div class="pwa-icon">📱</div>
+  <div class="pwa-text">
+    <p>Install Portfolio App</p>
+    <span>Works offline • Fast • Native feel</span>
+  </div>
+  <button class="pwa-btn" id="pwa-install-btn">Install</button>
+  <button class="pwa-dismiss" id="pwa-dismiss">✕</button>
+</div>
+
+<!-- Navbar -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <svg class="flutter-icon" viewBox="0 0 32 32" fill="none">
+      <path d="M2 22L12 12L22 22L17 27L7 27L2 22Z" fill="#54C5F8"/>
+      <path d="M2 12L12 2L22 12L17 17L7 17L2 12Z" fill="#027DFD"/>
+      <path d="M17 17L22 12L27 17L22 22L17 17Z" fill="#0553B1"/>
+    </svg>
+    MOE.DEV
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#github">GitHub</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button id="theme-toggle" title="Toggle theme">🌙</button>
+    <a href="#contact" class="nav-cta">Hire Me</a>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about" onclick="closeMobileMenu()">About</a>
+  <a href="#skills" onclick="closeMobileMenu()">Skills</a>
+  <a href="#experience" onclick="closeMobileMenu()">Experience</a>
+  <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+  <a href="#github" onclick="closeMobileMenu()">GitHub</a>
+  <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="particles-canvas"></canvas>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Available for work
+      </div>
+      <h1 class="hero-name">
+        <div class="first">Moe Kyaw Aung</div>
+        <div class="last">Android Developer</div>
+      </h1>
+      <div class="hero-title">
+        <span id="typed-text"></span><span class="cursor-blink">|</span>
+      </div>
+      <p class="hero-desc">
+        <strong>12 years</strong> crafting production-grade Android & Flutter apps.<br/>
+        Kotlin · Jetpack Compose · Firebase · Clean Architecture.<br/>
+        Based in <strong>Tachileik, Myanmar</strong> 🇲🇲
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          View Projects
+        </a>
+        <a href="#contact" class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+          Contact Me
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num" data-target="12">0</div><div class="stat-label">Years Exp</div></div>
+        <div class="stat"><div class="stat-num" data-target="43">0</div><div class="stat-label">GitHub Accounts</div></div>
+        <div class="stat"><div class="stat-num" data-target="82">0</div><div class="stat-label">Certificates</div></div>
+        <div class="stat"><div class="stat-num" data-target="38">0</div><div class="stat-label">Live PWAs</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-phone">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen" id="code-screen">
+            <div class="code-line"><span class="c-cm">// Flutter Portfolio App</span></div>
+            <div class="code-line">&nbsp;</div>
+            <div class="code-line"><span class="c-kw">class</span> <span class="c-cls">Portfolio</span> <span class="c-kw">extends</span></div>
+            <div class="code-line">&nbsp;&nbsp;<span class="c-cls">StatelessWidget</span> {</div>
+            <div class="code-line">&nbsp;</div>
+            <div class="code-line">&nbsp;&nbsp;<span class="c-fn">@override</span></div>
+            <div class="code-line">&nbsp;&nbsp;<span class="c-cls">Widget</span> <span class="c-fn">build</span>(</div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-cls">BuildContext</span> ctx) {</div>
+            <div class="code-line">&nbsp;</div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">return</span> <span class="c-cls">MaterialApp</span>(</div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title: <span class="c-str">'Moe Portfolio'</span>,</div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;theme: <span class="c-cls">ThemeData</span>(</div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;colorScheme:</div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-fn">ColorScheme.dark</span>(</div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;primary: <span class="c-cls">Colors</span>.blue,</div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;),</div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;home: <span class="c-cls">HomeScreen</span>(),</div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;);</div>
+            <div class="code-line">&nbsp;&nbsp;}</div>
+            <div class="code-line">}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-photo-wrap reveal">
+        <div class="about-photo">
+          <img src="https://res.cloudinary.com/demo/image/upload/w_400,h_400,c_fill,g_face/sample.jpg"
+               alt="Moe Kyaw Aung"
+               onerror="this.style.display='none';this.parentElement.querySelector('.about-placeholder').style.display='flex'"/>
+          <div class="about-placeholder" style="display:none;align-items:center;justify-content:center;width:100%;height:100%;font-size:5rem;">👨‍💻</div>
+          <div class="about-photo-overlay"></div>
+        </div>
+        <div class="about-location">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Tachileik, Myanmar 🇲🇲
+        </div>
+      </div>
+      <div class="about-content reveal">
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">Passionate <span>Mobile Engineer</span></h2>
+        <div class="divider"></div>
+        <h3>Senior Android Developer</h3>
+        <p>
+          With nearly <strong style="color:var(--flutter-teal)">12 years</strong> of professional Android development experience, I specialize in building scalable, performant mobile applications. My expertise spans the full Android ecosystem — from native Kotlin development with Jetpack Compose to cross-platform Flutter apps.
+        </p>
+        <p>
+          I'm deeply passionate about <strong style="color:var(--flutter-teal)">Clean Architecture</strong>, MVVM patterns, and CI/CD pipelines. I maintain an extensive GitHub presence across 43 accounts and have earned 82+ Programming Hub certificates across multiple tech domains.
+        </p>
+        <p>
+          Beyond coding, I run a YouTube channel, create content on TikTok, and am active across LinkedIn, Bluesky, and more — sharing knowledge with the Myanmar developer community. 🇲🇲
+        </p>
+        <div class="about-tags">
+          <span class="about-tag">Kotlin</span>
+          <span class="about-tag">Jetpack Compose</span>
+          <span class="about-tag">Flutter/Dart</span>
+          <span class="about-tag">Firebase</span>
+          <span class="about-tag">MVVM</span>
+          <span class="about-tag">Clean Architecture</span>
+          <span class="about-tag">REST APIs</span>
+          <span class="about-tag">CI/CD</span>
+          <span class="about-tag">PWA</span>
+          <span class="about-tag">Native Android</span>
+        </div>
+        <div class="social-links">
+          <a href="https://linkedin.com/in/moekyawaung" target="_blank" class="social-link">💼 LinkedIn</a>
+          <a href="https://github.com/moekyawaung" target="_blank" class="social-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="https://youtube.com/@moekyawaung" target="_blank" class="social-link">▶️ YouTube</a>
+          <a href="https://tiktok.com/@moekyawaung" target="_blank" class="social-link">🎵 TikTok</a>
+          <a href="https://bsky.app/profile/moekyawaung.bsky.social" target="_blank" class="social-link">🦋 Bluesky</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Technical Skills</div>
+      <h2 class="section-title">What I <span>Build With</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-icon">🟣</div>
+        <div class="skill-name">Kotlin & Jetpack Compose</div>
+        <div class="skill-desc">Modern Android UI with declarative composables, state management, animations, and Material 3 design system.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" data-width="98"></div></div>
+        <div class="skill-pct">98%</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🐦</div>
+        <div class="skill-name">Flutter & Dart</div>
+        <div class="skill-desc">Cross-platform apps with Flutter, custom widgets, state management (BLoC, Provider, Riverpod), PWA deployment.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" data-width="92"></div></div>
+        <div class="skill-pct">92%</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🔥</div>
+        <div class="skill-name">Firebase & Backend</div>
+        <div class="skill-desc">Firestore, Authentication, Cloud Functions, Realtime Database, Storage, FCM push notifications, Analytics.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" data-width="90"></div></div>
+        <div class="skill-pct">90%</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🏗️</div>
+        <div class="skill-name">Clean Architecture & MVVM</div>
+        <div class="skill-desc">Domain-driven design, use cases, repositories, dependency injection (Hilt/Dagger), testable layered architecture.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" data-width="95"></div></div>
+        <div class="skill-pct">95%</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🔗</div>
+        <div class="skill-name">REST APIs & Networking</div>
+        <div class="skill-desc">Retrofit, OkHttp, Ktor, JSON parsing, interceptors, authentication flows, offline-first strategies with Room.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" data-width="93"></div></div>
+        <div class="skill-pct">93%</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">⚙️</div>
+        <div class="skill-name">CI/CD & DevOps</div>
+        <div class="skill-desc">GitHub Actions, Fastlane, Play Store deployments, automated testing pipelines, code signing, environment management.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" data-width="85"></div></div>
+        <div class="skill-pct">85%</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🌐</div>
+        <div class="skill-name">PWA Development</div>
+        <div class="skill-desc">Service workers, Web App Manifests, offline caching, push notifications, install prompts, Lighthouse optimization.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" data-width="88"></div></div>
+        <div class="skill-pct">88%</div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🎨</div>
+        <div class="skill-name">UI/UX & Design</div>
+        <div class="skill-desc">Material Design 3, custom animations, micro-interactions, accessibility, responsive layouts, dark/light theming.</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" data-width="87"></div></div>
+        <div class="skill-pct">87%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Experience</div>
+      <h2 class="section-title">Career <span>Timeline</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2022 – Present</div>
+        <div class="timeline-role">Senior Android Developer</div>
+        <div class="timeline-company">Freelance / Remote</div>
+        <div class="timeline-desc">Leading full-cycle Android app development using Kotlin, Jetpack Compose, and Clean Architecture. Delivering cross-platform Flutter solutions, PWA integrations, and Firebase-powered backends for international clients.</div>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Kotlin</span><span class="timeline-tag">Compose</span>
+          <span class="timeline-tag">Flutter</span><span class="timeline-tag">Firebase</span>
+          <span class="timeline-tag">CI/CD</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2018 – 2022</div>
+        <div class="timeline-role">Android Developer</div>
+        <div class="timeline-company">Mobile Development Studio</div>
+        <div class="timeline-desc">Developed and maintained multiple production Android apps. Migrated legacy Java codebases to Kotlin. Implemented MVVM architecture, Room persistence, and REST API integrations.</div>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Kotlin</span><span class="timeline-tag">Java</span>
+          <span class="timeline-tag">MVVM</span><span class="timeline-tag">Room</span>
+          <span class="timeline-tag">Retrofit</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2015 – 2018</div>
+        <div class="timeline-role">Junior Android Developer</div>
+        <div class="timeline-company">Tech Company, Myanmar</div>
+        <div class="timeline-desc">Built Android applications from scratch using Java and XML layouts. Gained expertise in Android SDK, Material Design, SQLite, and app lifecycle management.</div>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Java</span><span class="timeline-tag">Android SDK</span>
+          <span class="timeline-tag">SQLite</span><span class="timeline-tag">Material Design</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2012 – 2015</div>
+        <div class="timeline-role">Android Developer Intern</div>
+        <div class="timeline-company">Startup, Tachileik</div>
+        <div class="timeline-desc">Started my Android journey building utility apps. Learned core Android fundamentals, UI design principles, and deployed first apps to the Google Play Store.</div>
+        <div class="timeline-tags">
+          <span class="timeline-tag">Java</span><span class="timeline-tag">XML</span>
+          <span class="timeline-tag">Play Store</span><span class="timeline-tag">Android</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Projects</div>
+      <h2 class="section-title">Featured <span>Work</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-thumb">
+          <div class="project-thumb-bg"></div>
+          <div class="project-thumb-glow"></div>
+          <div class="project-thumb-inner">🐦</div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Flutter PWA Portfolio V130</div>
+          <div class="project-desc">Full-featured PWA portfolio with Flutter-themed UI, cyberpunk dark aesthetic, particle animations, PWA install support, offline mode, and 43 GitHub account integrations.</div>
+          <div class="project-links">
+            <a href="#" class="project-link primary">🚀 Live Demo</a>
+            <a href="https://github.com/moekyawaung" target="_blank" class="project-link ghost">GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-thumb">
+          <div class="project-thumb-bg" style="background:linear-gradient(135deg,#1a0a3c,#2d1060)"></div>
+          <div class="project-thumb-glow" style="background:radial-gradient(circle,rgba(167,139,250,0.2) 0%,transparent 70%)"></div>
+          <div class="project-thumb-inner">🛒</div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">E-Commerce Android App</div>
+          <div class="project-desc">Full-featured shopping app built with Kotlin, Jetpack Compose, Firebase, and Stripe integration. Implements Clean Architecture with MVVM, real-time inventory, and offline cart.</div>
+          <div class="project-links">
+            <a href="#" class="project-link primary">🚀 Play Store</a>
+            <a href="https://github.com/moekyawaung" target="_blank" class="project-link ghost">GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-thumb">
+          <div class="project-thumb-bg" style="background:linear-gradient(135deg,#003322,#006644)"></div>
+          <div class="project-thumb-glow" style="background:radial-gradient(circle,rgba(0,212,170,0.2) 0%,transparent 70%)"></div>
+          <div class="project-thumb-inner">💬</div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Chat App — Firebase Realtime</div>
+          <div class="project-desc">Real-time messaging app with Firebase RTDB, Firestore, Cloud Messaging push notifications, end-to-end encryption, media sharing, and offline message queuing.</div>
+          <div class="project-links">
+            <a href="#" class="project-link primary">🚀 Play Store</a>
+            <a href="https://github.com/moekyawaung" target="_blank" class="project-link ghost">GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-thumb">
+          <div class="project-thumb-bg" style="background:linear-gradient(135deg,#3a1a00,#7a3800)"></div>
+          <div class="project-thumb-glow" style="background:radial-gradient(circle,rgba(255,107,0,0.2) 0%,transparent 70%)"></div>
+          <div class="project-thumb-inner">📊</div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">Finance Tracker Flutter</div>
+          <div class="project-desc">Cross-platform finance tracker with Flutter, SQLite local storage, interactive charts, budget planning, expense categorization, and CSV export.</div>
+          <div class="project-links">
+            <a href="#" class="project-link primary">🚀 Live App</a>
+            <a href="https://github.com/moekyawaung" target="_blank" class="project-link ghost">GitHub</a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-thumb">
+          <div class="project-thumb-bg" style="background:linear-gradient(135deg,#001a3a,#003380)"></div>
+          <div class="project-thumb-glow" style="background:radial-gradient(circle,rgba(84,197,248,0.2) 0%,transparent 70%)"></div>
+          <div class="project-thumb-inner">🌐</div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">38+ Lovable PWA Projects</div>
+          <div class="project-desc">A collection of 38+ Progressive Web Apps built on the Lovable platform covering productivity, entertainment, tools, and utilities — all installable on any device.</div>
+          <div class="project-links">
+            <a href="#" class="project-link primary">🚀 View All</a>
+            <a href="#github" class="project-link ghost">Explore</a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-thumb">
+          <div class="project-thumb-bg" style="background:linear-gradient(135deg,#1a2a00,#3a5500)"></div>
+          <div class="project-thumb-glow" style="background:radial-gradient(circle,rgba(100,200,50,0.2) 0%,transparent 70%)"></div>
+          <div class="project-thumb-inner">🤖</div>
+        </div>
+        <div class="project-body">
+          <div class="project-name">AI Assistant Android</div>
+          <div class="project-desc">Jetpack Compose AI assistant integrating GPT API with voice input, conversation history, smart suggestions, and Material 3 adaptive theming.</div>
+          <div class="project-links">
+            <a href="#" class="project-link primary">🚀 Play Store</a>
+            <a href="https://github.com/moekyawaung" target="_blank" class="project-link ghost">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certificates">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Achievements</div>
+      <h2 class="section-title">82+ <span>Certificates</span></h2>
+      <div class="divider"></div>
+      <p class="section-desc" style="margin-bottom:40px;">Programming Hub certifications across multiple technology domains.</p>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card reveal"><div class="cert-icon">🟣</div><div class="cert-name">Kotlin Programming</div><div class="cert-org">Programming Hub</div></div>
+      <div class="cert-card reveal"><div class="cert-icon">🐦</div><div class="cert-name">Flutter Development</div><div class="cert-org">Programming Hub</div></div>
+      <div class="cert-card reveal"><div class="cert-icon">📱</div><div class="cert-name">Android Development</div><div class="cert-org">Programming Hub</div></div>
+      <div class="cert-card reveal"><div class="cert-icon">🔥</div><div class="cert-name">Firebase Cloud</div><div class="cert-org">Programming Hub</div></div>
+      <div class="cert-card reveal"><div class="cert-icon">☕</div><div class="cert-name">Java Programming</div><div class="cert-org">Programming Hub</div></div>
+      <div class="cert-card reveal"><div class="cert-icon">🐍</div><div class="cert-name">Python Basics</div><div class="cert-org">Programming Hub</div></div>
+      <div class="cert-card reveal"><div class="cert-icon">🌐</div><div class="cert-name">Web Development</div><div class="cert-org">Programming Hub</div></div>
+      <div class="cert-card reveal"><div class="cert-icon">⚡</div><div class="cert-name">JavaScript ES6+</div><div class="cert-org">Programming Hub</div></div>
+      <div class="cert-card reveal"><div class="cert-icon">🗄️</div><div class="cert-name">SQL & Databases</div><div class="cert-org">Programming Hub</div></div>
+      <div class="cert-card reveal"><div class="cert-icon">☁️</div><div class="cert-name">Cloud Computing</div><div class="cert-org">Programming Hub</div></div>
+      <div class="cert-card reveal"><div class="cert-icon">🔐</div><div class="cert-name">Cybersecurity</div><div class="cert-org">Programming Hub</div></div>
+      <div class="cert-card reveal"><div class="cert-icon">🤖</div><div class="cert-name">Machine Learning</div><div class="cert-org">Programming Hub</div></div>
+      <div class="cert-card reveal"><div class="cert-icon">📊</div><div class="cert-name">Data Science</div><div class="cert-org">Programming Hub</div></div>
+      <div class="cert-card reveal"><div class="cert-icon">⚛️</div><div class="cert-name">React.js</div><div class="cert-org">Programming Hub</div></div>
+      <div class="cert-card reveal"><div class="cert-icon">🎨</div><div class="cert-name">UI/UX Design</div><div class="cert-org">Programming Hub</div></div>
+      <div class="cert-card reveal"><div class="cert-icon">🏆</div><div class="cert-name">+67 More Certs</div><div class="cert-org">Programming Hub</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GITHUB -->
+<section id="github">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Open Source</div>
+      <h2 class="section-title">GitHub <span>Universe</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="github-stats reveal">
+      <div class="github-stat-card"><div class="github-stat-num">43</div><div class="github-stat-label">GitHub Accounts</div></div>
+      <div class="github-stat-card"><div class="github-stat-num">500+</div><div class="github-stat-label">Repositories</div></div>
+      <div class="github-stat-card"><div class="github-stat-num">1K+</div><div class="github-stat-label">Commits/Year</div></div>
+      <div class="github-stat-card"><div class="github-stat-num">38+</div><div class="github-stat-label">Live PWAs</div></div>
+    </div>
+    <div class="github-accounts-grid">
+      <a href="https://github.com/moekyawaung" target="_blank" class="github-account reveal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        moekyawaung
+      </a>
+      <a href="https://github.com/moekyawaung01" target="_blank" class="github-account reveal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        moekyawaung01
+      </a>
+      <a href="https://github.com/moekyawaung02" target="_blank" class="github-account reveal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        moekyawaung02
+      </a>
+      <a href="https://github.com/moekyawaung03" target="_blank" class="github-account reveal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        moekyawaung03
+      </a>
+      <a href="https://github.com/moekyawaung04" target="_blank" class="github-account reveal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        moekyawaung04
+      </a>
+      <a href="https://github.com/moekyawaung05" target="_blank" class="github-account reveal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        moekyawaung05
+      </a>
+      <a href="https://github.com/moe-dev-android" target="_blank" class="github-account reveal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        moe-dev-android
+      </a>
+      <a href="https://github.com/moe-flutter-dev" target="_blank" class="github-account reveal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        moe-flutter-dev
+      </a>
+      <a href="https://github.com/myanmar-android-dev" target="_blank" class="github-account reveal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        myanmar-android-dev
+      </a>
+      <a href="https://github.com/tachileik-coder" target="_blank" class="github-account reveal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        tachileik-coder
+      </a>
+      <a href="https://github.com/moe-kotlin-dev" target="_blank" class="github-account reveal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        moe-kotlin-dev
+      </a>
+      <div class="github-account" style="color:var(--flutter-orange);border-color:rgba(255,107,0,0.3);cursor:default;">
+        <span>+32 more accounts →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Let's <span>Connect</span></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <p>I'm always open to new opportunities, collaborations, or just a friendly chat about Android, Flutter, or mobile development. Based in Myanmar, working remotely worldwide. 🌏</p>
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-item-icon">📧</div>
+            <div>
+              <div class="contact-item-label">Primary Email</div>
+              <div class="contact-item-val">moekyawaung@gmail.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">💼</div>
+            <div>
+              <div class="contact-item-label">LinkedIn</div>
+              <div class="contact-item-val">linkedin.com/in/moekyawaung</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div>
+              <div class="contact-item-label">Location</div>
+              <div class="contact-item-val">Tachileik, Myanmar 🇲🇲</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">⏰</div>
+            <div>
+              <div class="contact-item-label">Availability</div>
+              <div class="contact-item-val" style="color:var(--flutter-green);">● Open to Work</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form reveal">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="John Doe" id="contact-name"/>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="john@company.com" id="contact-email"/>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea rows="5" placeholder="Tell me about your project..." id="contact-msg"></textarea>
+        </div>
+        <button class="form-submit" onclick="handleContactSubmit()">
+          🚀 Send Message
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-copy">
+    © 2026 <span>Moe Kyaw Aung</span> · Built with 🐦 Flutter Spirit · Tachileik, Myanmar
+  </div>
+  <a href="#hero" class="footer-back-top" title="Back to top">↑</a>
+</footer>
+
+<!-- Sticky CTA -->
+<div id="sticky-cta">
+  <a href="mailto:moekyawaung@gmail.com" class="sticky-btn">
+    📧 Hire Me
+  </a>
+</div>
+
+<!-- ======= SCRIPTS ======= -->
+<script>
+// ---- CURSOR ----
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cursor.style.left=mx+'px';cursor.style.top=my+'px';
+});
+function animRing(){
+  rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+}animRing();
+document.querySelectorAll('a,button,.skill-card,.project-card,.github-account').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.width='20px';cursor.style.height='20px';ring.style.width='60px';ring.style.height='60px';ring.style.opacity='0.3';});
+  el.addEventListener('mouseleave',()=>{cursor.style.width='12px';cursor.style.height='12px';ring.style.width='40px';ring.style.height='40px';ring.style.opacity='0.6';});
+});
+
+// ---- PRELOADER ----
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    document.getElementById('preloader').classList.add('hidden');
+    startCounters();
+    startTyping();
+  },2000);
+});
+
+// ---- TYPING ----
+const titles=['Senior Android Developer','Flutter Developer','Kotlin Expert','PWA Builder','Firebase Developer','Clean Architecture Advocate'];
+let ti=0,ci=0,deleting=false,typedEl=document.getElementById('typed-text');
+function startTyping(){
+  const curr=titles[ti];
+  if(!deleting){
+    typedEl.textContent=curr.substring(0,ci+1);ci++;
+    if(ci===curr.length){deleting=true;setTimeout(tick,1400);return;}
+  }else{
+    typedEl.textContent=curr.substring(0,ci-1);ci--;
+    if(ci===0){deleting=false;ti=(ti+1)%titles.length;}
+  }
+  setTimeout(tick,deleting?60:90);
+}
+function tick(){startTyping();}
+
+// ---- COUNTERS ----
+function startCounters(){
+  document.querySelectorAll('[data-target]').forEach(el=>{
+    const target=+el.dataset.target;let cur=0;
+    const step=Math.ceil(target/40);
+    const t=setInterval(()=>{
+      cur=Math.min(cur+step,target);
+      el.textContent=cur+(target>20?'+':'');
+      if(cur>=target)clearInterval(t);
+    },40);
+  });
+}
+
+// ---- PARTICLES ----
+const canvas=document.getElementById('particles-canvas');
+const ctx2=canvas.getContext('2d');
+let W,H,particles=[];
+function resizeCanvas(){W=canvas.width=window.innerWidth;H=canvas.height=canvas.parentElement.offsetHeight;}
+resizeCanvas();window.addEventListener('resize',()=>{resizeCanvas();initParticles();});
+function initParticles(){
+  particles=[];
+  const count=Math.floor(W*H/8000);
+  for(let i=0;i<count;i++){
+    particles.push({
+      x:Math.random()*W,y:Math.random()*H,
+      r:Math.random()*2+0.5,
+      vx:(Math.random()-0.5)*0.3,vy:(Math.random()-0.5)*0.3,
+      o:Math.random()*0.5+0.1,
+      c:Math.random()>0.5?'rgba(84,197,248,':'rgba(2,125,253,'
+    });
+  }
+}initParticles();
+function drawParticles(){
+  ctx2.clearRect(0,0,W,H);
+  particles.forEach(p=>{
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>W)p.vx*=-1;
+    if(p.y<0||p.y>H)p.vy*=-1;
+    ctx2.beginPath();ctx2.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx2.fillStyle=p.c+p.o+')';ctx2.fill();
+  });
+  // Connect nearby
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const d=Math.hypot(particles[i].x-particles[j].x,particles[i].y-particles[j].y);
+      if(d<100){
+        ctx2.beginPath();
+        ctx2.moveTo(particles[i].x,particles[i].y);
+        ctx2.lineTo(particles[j].x,particles[j].y);
+        ctx2.strokeStyle=`rgba(84,197,248,${0.08*(1-d/100)})`;
+        ctx2.lineWidth=0.5;ctx2.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawParticles);
+}drawParticles();
+
+// ---- SCROLL REVEAL ----
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible');}
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+// Timeline items
+const tObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.1});
+document.querySelectorAll('.timeline-item').forEach(el=>tObs.observe(el));
+
+// ---- SKILL BARS ----
+const barObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const bar=e.target.querySelector('.skill-bar');
+      if(bar)bar.style.width=bar.dataset.width+'%';
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('.skill-card').forEach(el=>barObs.observe(el));
+
+// ---- NAVBAR ----
+let lastScroll=0;
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY;
+  document.getElementById('navbar').style.transform=
+    s>lastScroll&&s>100?'translateY(-100%)':'translateY(0)';
+  lastScroll=s;
+});
+
+// ---- HAMBURGER ----
+const ham=document.getElementById('hamburger');
+const mob=document.getElementById('mobile-menu');
+ham.addEventListener('click',()=>{
+  ham.classList.toggle('open');
+  mob.classList.toggle('open');
+});
+function closeMobileMenu(){ham.classList.remove('open');mob.classList.remove('open');}
+
+// ---- THEME TOGGLE ----
+const themeBtn=document.getElementById('theme-toggle');
+themeBtn.addEventListener('click',()=>{
+  document.body.classList.toggle('light');
+  themeBtn.textContent=document.body.classList.contains('light')?'🌙':'☀️';
+  localStorage.setItem('theme',document.body.classList.contains('light')?'light':'dark');
+});
+if(localStorage.getItem('theme')==='light'){
+  document.body.classList.add('light');themeBtn.textContent='🌙';
+}
+
+// ---- CONTACT FORM ----
+function handleContactSubmit(){
+  const n=document.getElementById('contact-name').value.trim();
+  const e=document.getElementById('contact-email').value.trim();
+  const m=document.getElementById('contact-msg').value.trim();
+  if(!n||!e||!m){alert('Please fill in all fields.');return;}
+  const sub=encodeURIComponent('Portfolio Contact from '+n);
+  const body=encodeURIComponent(m+'\n\nFrom: '+n+'\nEmail: '+e);
+  window.open('mailto:moekyawaung@gmail.com?subject='+sub+'&body='+body);
+}
+
+// ---- PWA ----
+let deferredPrompt=null;
+const banner=document.getElementById('pwa-banner');
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();
+  deferredPrompt=e;
+  setTimeout(()=>banner.classList.add('show'),3000);
+});
+document.getElementById('pwa-install-btn').addEventListener('click',async()=>{
+  if(!deferredPrompt){return;}
+  deferredPrompt.prompt();
+  const {outcome}=await deferredPrompt.userChoice;
+  deferredPrompt=null;
+  banner.classList.remove('show');
+});
+document.getElementById('pwa-dismiss').addEventListener('click',()=>{
+  banner.classList.remove('show');
+});
+window.addEventListener('appinstalled',()=>{
+  banner.classList.remove('show');
+  console.log('PWA installed!');
+});
+
+// ---- SERVICE WORKER ----
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  });
+}
+</script>
+
+</body>
+</html>
